@@ -1,0 +1,296 @@
+{
+  "gameConfig": {
+    "maxEmbarrassment": 100,
+    "startEmbarrassment": 30,
+    "startHandSize": 5,
+    "maxHandSize": 8,
+    "turnTimeLimit": 30,
+    "cardsPerTurn": 2,
+    "maxCardsPerTurn": 3
+  },
+  "cardTypes": [
+    "attack",
+    "defense",
+    "reflect",
+    "control",
+    "special"
+  ],
+  "effectTypes": [
+    "deal_embarrassment",
+    "reduce_embarrassment",
+    "gain_immunity",
+    "gain_reflect",
+    "draw_cards",
+    "discard_enemy",
+    "skip_next_effect",
+    "multiply_damage",
+    "reduce_cost",
+    "extra_turn_card"
+  ],
+  "cards": [
+    {
+      "id": "sincere_compliment",
+      "name": "真诚夸奖",
+      "type": "defense",
+      "cost": 8,
+      "speed": 5,
+      "description": "真诚地夸奖对方，化解尴尬氛围。减少自身10点尴尬值。",
+      "effects": [
+        {
+          "effectType": "reduce_embarrassment",
+          "target": "self",
+          "value": 10
+        }
+      ],
+      "exclusiveWith": []
+    },
+    {
+      "id": "change_topic",
+      "name": "转移话题",
+      "type": "control",
+      "cost": 6,
+      "speed": 7,
+      "description": "巧妙转移话题，让对方下一张攻击牌效果减半。",
+      "effects": [
+        {
+          "effectType": "multiply_damage",
+          "target": "enemy",
+          "value": 0.5,
+          "applyToNext": 1
+        }
+      ],
+      "exclusiveWith": ["control"]
+    },
+    {
+      "id": "humor_defuse",
+      "name": "幽默化解",
+      "type": "reflect",
+      "cost": 12,
+      "speed": 4,
+      "description": "用幽默感化解尴尬，反弹本回合下一次受到的攻击效果的50%。",
+      "effects": [
+        {
+          "effectType": "gain_reflect",
+          "target": "self",
+          "value": 0.5,
+          "duration": 1
+        }
+      ],
+      "exclusiveWith": ["reflect"]
+    },
+    {
+      "id": "silence_is_gold",
+      "name": "沉默是金",
+      "type": "defense",
+      "cost": 10,
+      "speed": 6,
+      "description": "保持沉默，免疫本回合下一次尴尬攻击。",
+      "effects": [
+        {
+          "effectType": "gain_immunity",
+          "target": "self",
+          "value": 1,
+          "duration": 1
+        }
+      ],
+      "exclusiveWith": ["defense"]
+    },
+    {
+      "id": "soul_question",
+      "name": "灵魂追问",
+      "type": "attack",
+      "cost": 10,
+      "speed": 3,
+      "description": "发出直击灵魂的追问，给对方增加12点尴尬值。",
+      "effects": [
+        {
+          "effectType": "deal_embarrassment",
+          "target": "enemy",
+          "value": 12
+        }
+      ],
+      "exclusiveWith": []
+    },
+    {
+      "id": "ex_comparison",
+      "name": "前任比较",
+      "type": "attack",
+      "cost": 18,
+      "speed": 2,
+      "description": "不经意地提起前任，给对方造成20点尴尬暴击。",
+      "effects": [
+        {
+          "effectType": "deal_embarrassment",
+          "target": "enemy",
+          "value": 20
+        }
+      ],
+      "exclusiveWith": ["attack"]
+    },
+    {
+      "id": "gift_fail",
+      "name": "礼物失手",
+      "type": "attack",
+      "cost": 7,
+      "speed": 5,
+      "description": "拿出的礼物似乎不太对... 给对方增加8点尴尬值。",
+      "effects": [
+        {
+          "effectType": "deal_embarrassment",
+          "target": "enemy",
+          "value": 8
+        }
+      ],
+      "exclusiveWith": []
+    },
+    {
+      "id": "work_talk",
+      "name": "突然聊工作",
+      "type": "control",
+      "cost": 5,
+      "speed": 8,
+      "description": "聊起工作话题，使对方弃掉1张手牌。",
+      "effects": [
+        {
+          "effectType": "discard_enemy",
+          "target": "enemy",
+          "value": 1
+        }
+      ],
+      "exclusiveWith": ["control"]
+    },
+    {
+      "id": "phone_escape",
+      "name": "假装看手机",
+      "type": "special",
+      "cost": 3,
+      "speed": 9,
+      "description": "假装看手机逃避话题，抽2张牌。",
+      "effects": [
+        {
+          "effectType": "draw_cards",
+          "target": "self",
+          "value": 2
+        }
+      ],
+      "exclusiveWith": ["special"]
+    },
+    {
+      "id": "full_mirror",
+      "name": "镜面反击",
+      "type": "reflect",
+      "cost": 15,
+      "speed": 3,
+      "description": "完全反弹下一次受到的攻击效果。",
+      "effects": [
+        {
+          "effectType": "gain_reflect",
+          "target": "self",
+          "value": 1,
+          "duration": 1
+        }
+      ],
+      "exclusiveWith": ["reflect"]
+    },
+    {
+      "id": "shameless_flirt",
+      "name": "撒娇卖萌",
+      "type": "special",
+      "cost": 10,
+      "speed": 4,
+      "description": "使出撒娇绝技，本回合可以多出1张牌。",
+      "effects": [
+        {
+          "effectType": "extra_turn_card",
+          "target": "self",
+          "value": 1
+        }
+      ],
+      "exclusiveWith": ["special"]
+    },
+    {
+      "id": "double_down",
+      "name": "加倍尴尬",
+      "type": "attack",
+      "cost": 20,
+      "speed": 1,
+      "description": "发起连续追问，给对方增加25点尴尬值。",
+      "effects": [
+        {
+          "effectType": "deal_embarrassment",
+          "target": "enemy",
+          "value": 25
+        }
+      ],
+      "exclusiveWith": ["attack"]
+    },
+    {
+      "id": "deep_immunity",
+      "name": "厚脸皮护体",
+      "type": "defense",
+      "cost": 18,
+      "speed": 5,
+      "description": "启动厚脸皮模式，免疫本回合所有攻击。",
+      "effects": [
+        {
+          "effectType": "gain_immunity",
+          "target": "self",
+          "value": 99,
+          "duration": 1
+        }
+      ],
+      "exclusiveWith": ["defense"]
+    },
+    {
+      "id": "small_talk",
+      "name": "寒暄客套",
+      "type": "defense",
+      "cost": 4,
+      "speed": 6,
+      "description": "客套寒暄几句，减少自身5点尴尬值。",
+      "effects": [
+        {
+          "effectType": "reduce_embarrassment",
+          "target": "self",
+          "value": 5
+        }
+      ],
+      "exclusiveWith": []
+    },
+    {
+      "id": "awkward_silence",
+      "name": "冷场突袭",
+      "type": "attack",
+      "cost": 5,
+      "speed": 5,
+      "description": "突然沉默让对方不知所措，增加6点尴尬值。",
+      "effects": [
+        {
+          "effectType": "deal_embarrassment",
+          "target": "enemy",
+          "value": 6
+        }
+      ],
+      "exclusiveWith": []
+    }
+  ],
+  "decks": {
+    "standard": [
+      { "cardId": "sincere_compliment", "count": 3 },
+      { "cardId": "change_topic", "count": 2 },
+      { "cardId": "humor_defuse", "count": 2 },
+      { "cardId": "silence_is_gold", "count": 2 },
+      { "cardId": "soul_question", "count": 3 },
+      { "cardId": "ex_comparison", "count": 1 },
+      { "cardId": "gift_fail", "count": 3 },
+      { "cardId": "work_talk", "count": 2 },
+      { "cardId": "phone_escape", "count": 2 },
+      { "cardId": "full_mirror", "count": 1 },
+      { "cardId": "shameless_flirt", "count": 1 },
+      { "cardId": "double_down", "count": 1 },
+      { "cardId": "deep_immunity", "count": 1 },
+      { "cardId": "small_talk", "count": 3 },
+      { "cardId": "awkward_silence", "count": 3 }
+    ]
+  }
+}

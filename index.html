@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>情人节晚餐卡牌对战</title>
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="start-screen" class="screen active">
+      <div class="title-container">
+        <h1 class="game-title">💘 情人节晚餐 💘</h1>
+        <p class="subtitle">卡牌话术对战</p>
+      </div>
+      <div class="difficulty-selector">
+        <h3>选择 AI 难度</h3>
+        <div class="difficulty-buttons">
+          <button class="diff-btn" data-style="conservative">
+            <span class="diff-emoji">🛡️</span>
+            <span class="diff-name">保守型</span>
+            <span class="diff-desc">稳扎稳打，擅长防守</span>
+          </button>
+          <button class="diff-btn selected" data-style="balanced">
+            <span class="diff-emoji">⚖️</span>
+            <span class="diff-name">均衡型</span>
+            <span class="diff-desc">攻守兼备，难以捉摸</span>
+          </button>
+          <button class="diff-btn" data-style="aggressive">
+            <span class="diff-emoji">🔥</span>
+            <span class="diff-name">激进型</span>
+            <span class="diff-desc">疯狂输出，速战速决</span>
+          </button>
+        </div>
+      </div>
+      <button id="start-btn" class="start-btn">开始晚餐 🍷</button>
+      <div class="rules-preview">
+        <details>
+          <summary>游戏规则</summary>
+          <ul>
+            <li>🎯 目标：让对方的尴尬值达到 100 点</li>
+            <li>💳 每回合可出 2 张牌，出牌消耗尴尬值</li>
+            <li>⏱️ 每回合 30 秒，超时自动出一张牌</li>
+            <li>🔄 同类型防御/控制/反弹牌每回合只能出一张</li>
+            <li>⚡ 速度值高的牌优先结算</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <div id="game-screen" class="screen">
+      <div class="game-header">
+        <div class="turn-info">
+          <span id="turn-number">回合 1</span>
+          <span id="current-turn" class="turn-badge">你的回合</span>
+        </div>
+        <div class="timer-container">
+          <span id="timer">30</span>
+          <span class="timer-label">秒</span>
+        </div>
+      </div>
+
+      <div class="battlefield">
+        <div class="player-area enemy-area">
+          <div class="player-info">
+            <div class="avatar enemy-avatar">🤖</div>
+            <div class="player-stats">
+              <div class="player-name">AI</div>
+              <div class="embarrassment-bar">
+                <div id="enemy-embarrassment-fill" class="embarrassment-fill enemy-fill"></div>
+                <span id="enemy-embarrassment-text" class="embarrassment-text">30/100</span>
+              </div>
+              <div class="hand-count">
+                <span>🃏 手牌: <span id="enemy-hand-count">5</span></span>
+              </div>
+            </div>
+          </div>
+          <div id="enemy-effects" class="active-effects"></div>
+        </div>
+
+        <div class="center-area">
+          <div id="battle-log" class="battle-log">
+            <div class="log-entry system">游戏开始！</div>
+          </div>
+        </div>
+
+        <div class="player-area player-area-bottom">
+          <div id="player-effects" class="active-effects"></div>
+          <div class="player-info">
+            <div class="avatar player-avatar">😎</div>
+            <div class="player-stats">
+              <div class="player-name">你</div>
+              <div class="embarrassment-bar">
+                <div id="player-embarrassment-fill" class="embarrassment-fill player-fill"></div>
+                <span id="player-embarrassment-text" class="embarrassment-text">30/100</span>
+              </div>
+              <div class="cards-played">
+                <span>本回合出牌: <span id="cards-played-count">0</span>/<span id="max-cards-per-turn">2</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hand-area">
+          <div id="player-hand" class="hand-cards"></div>
+        </div>
+
+        <div class="action-buttons">
+          <button id="end-turn-btn" class="end-turn-btn">结束回合 ➡️</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-over-screen" class="screen">
+      <div class="game-over-container">
+        <div id="game-over-icon" class="game-over-icon">🎉</div>
+        <h2 id="game-over-title">游戏结束</h2>
+        <p id="game-over-message">你赢了！</p>
+        <div class="final-stats">
+          <div class="stat-item">
+            <span class="stat-label">最终尴尬值</span>
+            <span id="final-player-emb">30</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">总回合数</span>
+            <span id="final-turns">0</span>
+          </div>
+        </div>
+        <button id="restart-btn" class="restart-btn">再来一局 🔄</button>
+      </div>
+    </div>
+
+    <div id="card-tooltip" class="card-tooltip hidden">
+      <div class="tooltip-name"></div>
+      <div class="tooltip-type"></div>
+      <div class="tooltip-cost">消耗: <span></span></div>
+      <div class="tooltip-desc"></div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.ts"></script>
+</body>
+</html>
